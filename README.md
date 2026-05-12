@@ -1,6 +1,6 @@
 # (Project Title) - Game Score Tracker App
 
-A full-stack Game Score Tracking app built with React, Express, and Postgres. Demonstrates session-based authentication, session rehydration, auth-dependent data fetching, and conditional rendering.
+A full-stack Game Score Tracking app built with React, Express, and Postgres. Demonstrates session-based authentication, session rehydration, auth-dependent data fetching, and conditional rendering. Perfect for anyone who wants to track their best scores for any genre of game out there.
 
 ## User Stories
 
