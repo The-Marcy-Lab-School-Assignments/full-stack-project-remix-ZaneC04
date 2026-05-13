@@ -35,11 +35,13 @@ score       TEXT NOT NULL
 user_id     INTEGER REFERENCES users(user_id) ON DELETE CASCADE
 
 genres
+─────────────────────────────
 genre_id SERIAL PRIMARY KEY
 genre TEXT NOT NULL
 
 
 scores_genres
+─────────────────────────────
 score_genre_id SERIAL PRIMARY KEY
 score_id INTEGER REFERENCES scores(score_id) ON DELETE CASCADE
 genre_id INTEGER REFERENCES genres(genre_id) ON DELETE CASCADE
