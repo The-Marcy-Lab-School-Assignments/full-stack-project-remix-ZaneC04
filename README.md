@@ -45,6 +45,7 @@ scores_genres
 score_genre_id SERIAL PRIMARY KEY
 score_id INTEGER REFERENCES scores(score_id) ON DELETE CASCADE
 genre_id INTEGER REFERENCES genres(genre_id) ON DELETE CASCADE
+UNIQUE (score_id, genre_id)
 ```
 
 A user has many scores. Deleting a user cascades to delete all of their scores and their genre associations.

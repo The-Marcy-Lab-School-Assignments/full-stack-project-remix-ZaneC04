@@ -4,9 +4,9 @@ const pool = require('./pool');
 const SALT_ROUNDS = 8;
 
 const seed = async () => {
-  // Drop tables in reverse dependency order (todos references users via FK)
   await pool.query('DROP TABLE IF EXISTS todos');
   await pool.query('DROP TABLE IF EXISTS users');
+  
 
   await pool.query(`
     CREATE TABLE users (
