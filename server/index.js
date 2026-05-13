@@ -1,3 +1,5 @@
+// TODO: import score controllers, change routes to use routes in API contract
+
 const path = require('path');
 const express = require('express');
 const cookieSession = require('cookie-session');

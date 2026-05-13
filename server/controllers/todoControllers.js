@@ -1,3 +1,5 @@
+// TODO: update to use scoreModel and rename to scoreControllers, make controllers be listScores, createScore, updateScore and deleteScore
+
 const todoModel = require('../models/todoModel');
 
 module.exports.listTodos = async (req, res, next) => {

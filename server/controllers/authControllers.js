@@ -1,3 +1,5 @@
+// TODO: N/A, auth controllers can be reused
+
 const userModel = require('../models/userModel');
 
 module.exports.register = async (req, res, next) => {

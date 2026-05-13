@@ -1,3 +1,7 @@
+// TODO: create scores, genres, and scores_genres tables and drop in reverse dependency
+// TODO: change seeded users and insert into users table
+// TODO: add data to scores, genres, and score_genres tables and delete todos data
+
 const bcrypt = require('bcrypt');
 const pool = require('./pool');
 

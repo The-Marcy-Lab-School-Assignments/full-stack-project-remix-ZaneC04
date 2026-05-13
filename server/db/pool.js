@@ -1,3 +1,5 @@
+// TODO: N/A, can be reused
+
 const { Pool } = require('pg');
 require('dotenv').config();
 

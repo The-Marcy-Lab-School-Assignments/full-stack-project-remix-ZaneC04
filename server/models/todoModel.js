@@ -1,3 +1,6 @@
+// TODO: rename to scoreModel, create listByUser (list users scores from user_id), 
+// find (find score by score_id), create (create new score), update (update score value), 
+// destroy (delete score by score_id)
 const pool = require('../db/pool');
 
 // Returns all todos for a specific user, ordered by creation time
