@@ -30,6 +30,7 @@ password_hash TEXT NOT NULL
 scores
 ─────────────────────────────
 score_id    SERIAL PRIMARY KEY
+game_title  TEXT NOT NULL
 score_type  TEXT NOT NULL
 score       TEXT NOT NULL
 user_id     INTEGER REFERENCES users(user_id) ON DELETE CASCADE
@@ -63,13 +64,14 @@ A user has many scores. Deleting a user cascades to delete all of their scores a
 
 ### Score endpoints (all require authentication)
 
-| Method | Endpoint                | Request Body                      | Response                                                      |
-| ------ | ----------------------- | --------------------------------- | ------------------------------------------------------------- |
-| GET    | `/api/scores`           | —                                 | `[{ score_id, score_type, score, user_id, username, genre }]` |
-| GET    | `/api/scores?genre_id=` | —                                 | `[{ score_id, score_type, score, user_id, username, genre }]` |
-| POST   | `/api/scores`           | `{ score_type, score, genre_id }` | `{ score_id, score_type, score, user_id, genre }`             |
-| PATCH  | `/api/scores/:score_id` | `{ score }`                       | `{ score_id, score_type, score, user_id, genre }`             |
-| DELETE | `/api/scores/:score_id` | —                                 | `{ score_id, score_type, score, user_id }`                    |
+| Method | Endpoint                | Request Body                                  | Response                                                                  |
+| ------ | ----------------------- | --------------------------------------------- | ------------------------------------------------------------------------- |
+| GET    | `/api/scores`           | —                                             | `[{ score_id, game_title, score_type, score, user_id, username, genre }]` |
+| GET    | `/api/scores/me`           | —                                             | `[{ score_id, game_title, score_type, score, user_id, username, genre }]` |
+| GET    | `/api/scores?genre_id=` | —                                             | `[{ score_id, game_title, score_type, score, user_id, username, genre }]` |
+| POST   | `/api/scores`           | `{ game_title, score_type, score, genre_id }` | `{ score_id, game_title, score_type, score, user_id, genre }`             |
+| PATCH  | `/api/scores/:score_id` | `{ score }`                                   | `{ score_id, score_type, score, user_id, genre }`                         |
+| DELETE | `/api/scores/:score_id` | —                                             | `{ score_id, game_title, score_type, score, user_id }`                    |
 
 ### Genre endpoints (all require authentication)
 
