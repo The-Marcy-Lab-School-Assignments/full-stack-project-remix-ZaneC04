@@ -1,4 +1,4 @@
-// TODO: import score controllers, change routes to use routes in API contract
+// TODO: import score controllers, change routes to use routes in API contract (DONE)
 
 const path = require('path');
 const express = require('express');
@@ -9,7 +9,7 @@ const logRoutes = require('./middleware/logRoutes');
 const checkAuthentication = require('./middleware/checkAuthentication');
 const authControllers = require('./controllers/authControllers');
 const scoreControllers = require('./controllers/scoreControllers');
-const genreControllers = require('./controllers/')
+const genreControllers = require('./controllers/genreControllers')
 
 const app = express();
 const PORT = process.env.PORT || 8080;
