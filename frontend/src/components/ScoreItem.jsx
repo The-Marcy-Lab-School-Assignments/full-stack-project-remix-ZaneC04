@@ -1,20 +1,23 @@
-import { updateTodo, deleteTodo } from '../adapters/todo-adapters';
+import { updateScore, deleteScore } from '../adapters/score-adapters';
 
-function TodoItem({ todo, loadTodos }) {
+// TODO: update to be scoreItem that has genre, game title, username and score and score type, make page for all users scores when logged in
+
+
+function ScoreItem({ score, loadScores }) {
   const handleChange = async (e) => {
-    const { error } = await updateTodo(todo.todo_id, { is_complete: e.target.checked });
+    const { error } = await updateScore(score.score_id, newScore);
     if (error) return console.error(error);
-    loadTodos();
+    loadScores();
   };
 
   const handleDelete = async () => {
-    const { error } = await deleteTodo(todo.todo_id);
+    const { error } = await deleteScore(score.score_id);
     if (error) return console.error(error);
-    loadTodos();
+    loadScores();
   };
 
   return (
-    <li className="todo-item">
+    <li className="score-item">
       <input
         type="checkbox"
         checked={todo.is_complete}
