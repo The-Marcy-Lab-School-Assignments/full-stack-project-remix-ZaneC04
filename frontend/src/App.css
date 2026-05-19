@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
 }
-
+/*  
 body {
   font-family: system-ui, sans-serif;
   background: #f5f5f5;
@@ -22,7 +22,7 @@ h1 {
   color: #1d4ed8;
 }
 
-/* Auth forms */
+Auth forms
 #auth-section {
   display: flex;
   gap: 1.5rem;
@@ -69,7 +69,7 @@ form button[type='submit'] {
 }
 
 /* Logged-in view */
-section {
+/* section {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -96,7 +96,7 @@ section {
 }
 
 /* Add todo form */
-#add-todo-form {
+/* #add-todo-form {
   display: flex;
   gap: 0.5rem;
   background: white;
@@ -104,8 +104,8 @@ section {
   border-radius: 8px;
   border: 1px solid #e5e7eb;
   flex-direction: column;
-}
-
+} */
+/* 
 #add-todo-form label {
   font-size: 0.9rem;
   color: #374151;
@@ -129,10 +129,10 @@ section {
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.95rem;
-}
+} */ 
 
 /* Todo list */
-#todo-list {
+/* #todo-list {
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -182,4 +182,4 @@ section {
     flex-direction: row;
     align-items: flex-end;
   }
-}
+} */ 

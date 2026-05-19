@@ -4,12 +4,13 @@ import ScoreItem from './ScoreItem';
 
 function ScoreList({ scores, loadScores, currentUser }) {
   return (
-    <ul id="todo-list">
-      {todos.map((todo) => (
-        <TodoItem
+    <ul id="score-list">
+      {scores.map((score) => (
+        <ScoreItem
           key={score.score_id}
           score={score}
           loadScores={loadScores}
+          currentUser={currentUser}
         />
       ))}
     </ul>

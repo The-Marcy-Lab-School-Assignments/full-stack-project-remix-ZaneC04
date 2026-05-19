@@ -1,15 +1,16 @@
-import { createScore } from '../adapters/score-adapters';
-
+import { createScore, fetchGenres } from '../adapters/score-adapters';
+import { useEffect, useState } from 'react';
 // TODO: update to be addScoreForm, use fetch for genres
 
-function AddScoreForm({ loadScores }) {
+function AddScoreForm({ loadScores, setActiveTab }) {
+  const [genres, setGenres] = useState([])
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const gameTitle = form.elements.gameTitle.value;
     const scoreType = form.elements.scoreType.value;
     const score = form.elements.score.value;
-    const genreID = form.elements.genreID.value;
+    const genreID = form.elements.genres.value;
     if (!gameTitle || !scoreType || !score || !genreID) return;
 
     const { error } = await createScore(gameTitle, scoreType, score, genreID);
@@ -17,13 +18,45 @@ function AddScoreForm({ loadScores }) {
 
     await loadScores();
     form.reset();
+    setActiveTab('mine')
   };
 
+  useEffect(() => {
+  const loadGenres = async () => {
+    const { data } = await fetchGenres();
+    setGenres(data);
+    };
+    loadGenres();
+  }, []);
+
   return (
-    <form id="add-todo-form" onSubmit={handleSubmit}>
-      <label htmlFor="title-input">New Todo:</label>
-      <input type="text" name="title" id="title-input" placeholder="What needs to be done?" />
-      <button type="submit">Add</button>
+    <form id="add-score-form" onSubmit={handleSubmit}>
+      <h2>New Score:</h2>
+
+      <div>
+        <label htmlFor="gameTitle">Game Title:</label>
+      <input type="text" name='gameTitle' placeholder='League of Legends, Minecraft, etc...'/>
+      </div>
+
+      <div>
+        <label htmlFor="scoreType">Score Type:</label>
+      <input type="text" name='scoreType'placeholder='Time, Team Score, etc...'/>
+      </div>
+      
+      <div>
+        <label htmlFor="score">Score:</label>
+        <input type="text" name='score'/>
+      </div>
+      
+      <div>
+        <label htmlFor="genres">Game Genre:</label>
+        <select name="genres" id="genre">
+        {genres.map(genre => 
+          <option className="genre-name" key={genre.genre_id} value={genre.genre_id}>{genre.genre}</option>)}
+        </select>
+      </div>
+      
+      <button type="submit">Add Score</button>
     </form>
   );
 }

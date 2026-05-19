@@ -46,7 +46,6 @@ const seed = async () => {
       score_id INTEGER REFERENCES scores(score_id) ON DELETE CASCADE,
       genre_id INTEGER REFERENCES genres(genre_id) ON DELETE CASCADE,
       UNIQUE (score_id, genre_id)
-
     )
   `);
 

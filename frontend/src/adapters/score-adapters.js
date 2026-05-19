@@ -17,11 +17,11 @@ export const fetchAllScores = async (genre_id) => {
 };
 
 export const fetchMyScores = async () => {
-  return handleFetch('api/scores/me')
+  return handleFetch('/api/scores/me')
 }
 
 export const fetchGenres = async () => {
-  return handleFetch('api/genres')
+  return handleFetch('/api/genres')
 }
 
 export const createScore = async (game_title, score_type, score, genre_id) => {

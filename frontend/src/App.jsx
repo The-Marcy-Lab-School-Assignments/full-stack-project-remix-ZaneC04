@@ -43,7 +43,7 @@ function App() {
     <main>
       <h1>Score.Points (Score Tracker)</h1>
       {currentUser
-        ? <ScorePage currentUser={currentUser} handleLogout={handleLogout} activeTab={activeTab}/>
+        ? <ScorePage currentUser={currentUser} handleLogout={handleLogout} activeTab={activeTab} setActiveTab={setActiveTab}/>
         : <AuthPage handleLogin={handleLogin} handleRegister={handleRegister} />
       }
     </main>
