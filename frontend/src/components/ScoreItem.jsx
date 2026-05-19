@@ -21,17 +21,32 @@ function ScoreItem({ score, loadScores, currentUser }) {
     loadScores();
   };
 
-  return (
+   const isOwner = score.user_id === currentUser.user_id;
+
+ return (
     <li className="score-item">
-      <span className='score-val'>{score.score}</span>
-      <span className='genre-bubble'>{score.genre}</span>
-      <span className='game-title-bubble'>{score.game_title}</span>
-      <span className='score-type-bubble'>{score.score_type}</span>
-      <span className='user-bubble'>{score.username}</span>
-      {score.user_id === currentUser.user_id && <button className='edit-btn' onClick={() => setIsEditing(true)}>Edit</button>}
-      {isEditing && (<input value={newScore} onChange={(e) => setNewScore(e.target.value)} />)}
-      {isEditing && <button onClick={handleChange}>Confirm</button>}
-      {score.user_id === currentUser.user_id && <button className="delete-btn" onClick={handleDelete}>Delete</button>}
+      <div className="score-content">
+        <div className="score-top-row">
+          <span className="score-val">{score.score}</span>
+          <span className="genre-bubble">{score.genre}</span>
+        </div>
+        <div className="score-bottom-row">
+          <span className="game-title-bubble">{score.game_title}</span>
+          <span className="score-type-bubble">{score.score_type}</span>
+        </div>
+      </div>
+      {isOwner && (
+        <div className="score-button-row">
+          <button className="edit-btn" onClick={() => setIsEditing(true)}>Edit</button>
+          <button className="delete-btn" onClick={handleDelete}>Delete</button>
+        </div>
+      )}
+      {isEditing && (
+        <div className="score-button-row">
+          <input value={newScore} onChange={(e) => setNewScore(e.target.value)} />
+          <button onClick={handleChange}>Confirm</button>
+        </div>
+      )}
     </li>
   );
 }

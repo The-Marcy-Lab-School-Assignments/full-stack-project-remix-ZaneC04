@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
 }
-/*  
+
 body {
   font-family: system-ui, sans-serif;
   background: #f5f5f5;
@@ -19,10 +19,29 @@ main {
 h1 {
   font-size: 1.75rem;
   margin-bottom: 1.5rem;
-  color: #1d4ed8;
+  background: linear-gradient(to right, #ffd93d, #ff8c00, #ff4500, #e91e8c, #9c27b0, #3f3dbf, #1e90ff, #ffd93d);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: rainbow-flow 4s linear infinite;
+  text-align: center;
+}
+  
+ 
+@keyframes rainbow-flow {
+  0%   { background-position: 0% center; }
+  100% { background-position: 200% center; }
 }
 
-Auth forms
+ 
+@keyframes rainbow-flow {
+  0%   { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+
+/* Auth forms */
 #auth-section {
   display: flex;
   gap: 1.5rem;
@@ -69,7 +88,7 @@ form button[type='submit'] {
 }
 
 /* Logged-in view */
-/* section {
+ section {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -95,91 +114,109 @@ form button[type='submit'] {
   font-size: 0.9rem;
 }
 
-/* Add todo form */
-/* #add-todo-form {
-  display: flex;
-  gap: 0.5rem;
-  background: white;
-  padding: 1rem;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
-  flex-direction: column;
-} */
-/* 
-#add-todo-form label {
-  font-size: 0.9rem;
-  color: #374151;
-  display: none;
-}
-
-#add-todo-form input {
-  flex: 1;
-  padding: 0.5rem;
-  border: 1px solid #d1d5db;
-  border-radius: 4px;
-  font-size: 0.95rem;
-  margin-bottom: 0;
-}
-
-#add-todo-form button {
-  background: #1d4ed8;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.95rem;
-} */ 
-
-/* Todo list */
-/* #todo-list {
+li {
   list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
 }
 
-.todo-item {
+nav {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+nav button {
+  position: relative;
+  width: 120px;
+  padding: 0.4rem 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 3px;
+  border: none;
   background: white;
+  color: white;
+  z-index: 0;
+}
+
+ 
+/* Gradient border via pseudo-element sitting behind the white button */
+nav button::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 5px;
+  background: linear-gradient(to right, #ffd93d, #ff8c00, #ff4500, #e91e8c, #9c27b0, #3f3dbf, #1e90ff);
+  z-index: -1;
+}
+
+#score-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 12px;
+}
+ 
+#score-list li {
+  background: white;
+  border-radius: 10px;
   border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 0.75rem 1rem;
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 110px;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+
+ 
+.score-top-row {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  justify-content: space-between;
+  font-size: 1rem;
+  font-weight: 600;
 }
-
-.todo-item input[type='checkbox'] {
-  width: 1rem;
-  height: 1rem;
-  cursor: pointer;
-  flex-shrink: 0;
+ 
+.score-bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-style: italic;
+  color: #555;
 }
-
-.todo-item span {
-  flex: 1;
+ 
+.game-title-bubble {
   font-size: 0.95rem;
 }
-
-.todo-item span.completed {
-  text-decoration: line-through;
-  color: #9ca3af;
+ 
+.score-type-bubble {
+  font-size: 0.8rem;
+  color: #777;
+}
+ 
+.score-button-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
 }
 
-.delete-btn {
-  background: #dc2626;
-  color: white;
-  border: none;
-  padding: 0.3rem 0.6rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  flex-shrink: 0;
+.score-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+ 
+nav button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+ 
+nav button {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-@media (min-width: 480px) {
-  #add-todo-form {
-    flex-direction: row;
-    align-items: flex-end;
-  }
-} */ 
+ 
