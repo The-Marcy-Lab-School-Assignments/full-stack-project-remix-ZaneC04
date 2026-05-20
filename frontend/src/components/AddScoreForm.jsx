@@ -2,8 +2,7 @@ import { createScore, fetchGenres } from '../adapters/score-adapters';
 import { useEffect, useState } from 'react';
 // TODO: update to be addScoreForm, use fetch for genres
 
-function AddScoreForm({ loadScores, setActiveTab }) {
-  const [genres, setGenres] = useState([])
+function AddScoreForm({ loadScores, setActiveTab, genres }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -48,15 +47,15 @@ function AddScoreForm({ loadScores, setActiveTab }) {
         <input type="text" name='score'/>
       </div>
       
-      <div>
+      <div id='genre-row'>
         <label htmlFor="genres">Game Genre:</label>
-        <select name="genres" id="genre">
+        <select name="genres" id="genre" className='genre-dropdown'>
         {genres.map(genre => 
           <option className="genre-name" key={genre.genre_id} value={genre.genre_id}>{genre.genre}</option>)}
         </select>
       </div>
       
-      <button type="submit">Add Score</button>
+      <button id="submit-score-btn" type="submit">Add Score</button>
     </form>
   );
 }

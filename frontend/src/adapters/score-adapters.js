@@ -15,10 +15,12 @@ export const fetchAllScores = async (genre_id) => {
   const url = genre_id ? `/api/scores?genre_id=${genre_id}` : '/api/scores';
   return handleFetch(url);
 };
+ 
+export const fetchMyScores = async (genre_id) => {
+  const url = genre_id ? `/api/scores/me?genre_id=${genre_id}` : '/api/scores/me';
+  return handleFetch(url);
+};
 
-export const fetchMyScores = async () => {
-  return handleFetch('/api/scores/me')
-}
 
 export const fetchGenres = async () => {
   return handleFetch('/api/genres')

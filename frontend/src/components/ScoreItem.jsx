@@ -1,7 +1,14 @@
 import { useState } from 'react';
 import { updateScore, deleteScore } from '../adapters/score-adapters';
 
-// TODO: update to be scoreItem that has genre, game title, username and score and score type, make page for all users scores when logged in
+const genreClassMap = {
+  'Rhythm':        'genre-rhythm',
+  'Sports':        'genre-sports',
+  'Team-Based':    'genre-teambased',
+  'Other':         'genre-other',
+  'Puzzle':        'genre-puzzle',
+  'Rougelite/like':'genre-roguelite',
+};
 
 
 function ScoreItem({ score, loadScores, currentUser }) {
@@ -23,17 +30,13 @@ function ScoreItem({ score, loadScores, currentUser }) {
 
    const isOwner = score.user_id === currentUser.user_id;
 
- return (
+  return (
     <li className="score-item">
       <div className="score-content">
-        <div className="score-top-row">
-          <span className="score-val">{score.score}</span>
-          <span className="genre-bubble">{score.genre}</span>
-        </div>
-        <div className="score-bottom-row">
-          <span className="game-title-bubble">{score.game_title}</span>
-          <span className="score-type-bubble">{score.score_type}</span>
-        </div>
+        <span className="score-val">{score.score}</span>
+        <span className={`genre-bubble ${genreClassMap[score.genre] || 'genre-other'}`}>{score.genre}</span>
+        <span className="game-title-bubble">{score.game_title}</span>
+        <span className="score-type-bubble">{score.score_type}</span>
       </div>
       {isOwner && (
         <div className="score-button-row">
@@ -44,7 +47,7 @@ function ScoreItem({ score, loadScores, currentUser }) {
       {isEditing && (
         <div className="score-button-row">
           <input value={newScore} onChange={(e) => setNewScore(e.target.value)} />
-          <button onClick={handleChange}>Confirm</button>
+          <button className="confirm-btn" onClick={handleChange}>Confirm</button>
         </div>
       )}
     </li>
