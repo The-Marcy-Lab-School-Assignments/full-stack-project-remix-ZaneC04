@@ -14,7 +14,7 @@ A full-stack Game Score Tracking app built with React, Express, and Postgres. De
 **Score Tracking**
 
 - A logged-in user can see all of their scores
-- A logged-in user can create a new score by entering a genre of game (puzzle, sports, etc.) the score type (time, points, etc.) and the value.
+- A logged-in user can create a new score by entering a genre of game (puzzle, sports, etc.) the score type (time, points, etc.), the game title and the score value
 - A logged-in user can see other users scores, and filter by genre
 - A logged-in user can delete a score
 
@@ -67,7 +67,7 @@ A user has many scores. Deleting a user cascades to delete all of their scores a
 | Method | Endpoint                | Request Body                                  | Response                                                                  |
 | ------ | ----------------------- | --------------------------------------------- | ------------------------------------------------------------------------- |
 | GET    | `/api/scores`           | —                                             | `[{ score_id, game_title, score_type, score, user_id, username, genre }]` |
-| GET    | `/api/scores/me`           | —                                             | `[{ score_id, game_title, score_type, score, user_id, username, genre }]` |
+| GET    | `/api/scores/me`        | —                                             | `[{ score_id, game_title, score_type, score, user_id, username, genre }]` |
 | GET    | `/api/scores?genre_id=` | —                                             | `[{ score_id, game_title, score_type, score, user_id, username, genre }]` |
 | POST   | `/api/scores`           | `{ game_title, score_type, score, genre_id }` | `{ score_id, game_title, score_type, score, user_id, genre }`             |
 | PATCH  | `/api/scores/:score_id` | `{ score }`                                   | `{ score_id, score_type, score, user_id, genre }`                         |
