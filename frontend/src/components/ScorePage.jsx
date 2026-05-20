@@ -66,24 +66,6 @@ function ScorePage({ currentUser, handleLogout, activeTab, setActiveTab }) {
           </select>
         </div>
       )}
- 
-      {activeTab === 'mine' && (
-        <div id="genre-filter-row">
-          <label htmlFor="my-genre-filter">Filter by genre:</label>
-          <select
-            id="my-genre-filter"
-            className="genre-dropdown"
-            value={myGenreId}
-            onChange={(e) => setMyGenreId(e.target.value)}
-          >
-            <option value="">All Genres</option>
-            {genres.map(genre => (
-              <option key={genre.genre_id} value={genre.genre_id}>{genre.genre}</option>
-            ))}
-          </select>
-        </div>
-      )}
- 
       {isLoading && <p>Loading scores...</p>}
       {error && <p className="error">Something went wrong: {error}</p>}
       {activeTab === 'all' && <ScoreList scores={scores} loadScores={loadScores} currentUser={currentUser} />}
