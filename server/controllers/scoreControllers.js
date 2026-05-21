@@ -14,12 +14,14 @@ module.exports.listAllScores = async (req, res, next) => {
 
 module.exports.listMyScores = async (req, res, next) => {
   try {
-    const scores = await scoreModel.listByUser(req.session.user_id);
+    const { genre_id } = req.query;
+    const scores = await scoreModel.listByUser(req.session.user_id, genre_id);
     res.send(scores);
   } catch (err) {
     next(err);
   }
 };
+
 
 module.exports.createScore = async (req, res, next) => {
   try {

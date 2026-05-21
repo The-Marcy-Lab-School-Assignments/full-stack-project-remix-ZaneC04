@@ -11,7 +11,7 @@ const genreClassMap = {
 };
 
 
-function ScoreItem({ score, loadScores, currentUser }) {
+function ScoreItem({ score, loadScores, currentUser, showUsername }) {
   const [isEditing, setIsEditing] = useState(false)
   const [newScore, setNewScore] = useState('')
   
@@ -37,6 +37,7 @@ function ScoreItem({ score, loadScores, currentUser }) {
         <span className={`genre-bubble ${genreClassMap[score.genre] || 'genre-other'}`}>{score.genre}</span>
         <span className="game-title-bubble">{score.game_title}</span>
         <span className="score-type-bubble">{score.score_type}</span>
+        {showUsername && <span className="username-bubble">@{score.username}</span>}
       </div>
       {isOwner && (
         <div className="score-button-row">

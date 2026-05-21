@@ -18,18 +18,20 @@ module.exports.list = async (genre_id) => {
 };
 
 // Returns all scores for a specific user, ordered by creation time
-module.exports.listByUser = async (user_id) => {
+module.exports.listByUser = async (user_id, genre_id) => {
   const query = `
     SELECT scores.*, genres.genre
     FROM scores
     JOIN scores_genres ON scores.score_id = scores_genres.score_id
     JOIN genres ON scores_genres.genre_id = genres.genre_id
     WHERE scores.user_id = $1
+    ${genre_id ? 'AND genres.genre_id = $2' : ''}
     ORDER BY scores.score_id ASC
   `;
-  const { rows } = await pool.query(query, [user_id]);
+  const { rows } = await pool.query(query, genre_id ? [user_id, genre_id] : [user_id]);
   return rows;
 };
+
 
 // Returns a single score row (used for ownership checks before update/delete)
 module.exports.find = async (score_id) => {

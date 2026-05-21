@@ -68,14 +68,28 @@ function ScorePage({ currentUser, handleLogout, activeTab, setActiveTab }) {
       )}
       {isLoading && <p>Loading scores...</p>}
       {error && <p className="error">Something went wrong: {error}</p>}
-      {activeTab === 'all' && <ScoreList scores={scores} loadScores={loadScores} currentUser={currentUser} />}
+      {activeTab === 'all' && <ScoreList scores={scores} loadScores={loadScores} currentUser={currentUser} showUsername={true} />}
+      {activeTab === 'mine' && (
+        <div id="genre-filter-row">
+          <label htmlFor="my-genre-filter">Filter by genre:</label>
+          <select
+            id="my-genre-filter"
+            className="genre-dropdown"
+            value={myGenreId}
+            onChange={(e) => setMyGenreId(e.target.value)}
+          >
+            <option value="">All Genres</option>
+            {genres.map(genre => (
+              <option key={genre.genre_id} value={genre.genre_id}>{genre.genre}</option>
+            ))}
+          </select>
+        </div>
+      )}
       {activeTab === 'mine' && <ScoreList scores={scores} loadScores={loadScores} currentUser={currentUser} />}
       {activeTab === 'add' && <AddScoreForm loadScores={loadScores} setActiveTab={setActiveTab} genres={genres} />}
       {activeTab === 'account' && <AccountPage currentUser={currentUser} handleLogout={handleLogout} />}
     </section>
   );
-
-
 }
 
 export default ScorePage;
