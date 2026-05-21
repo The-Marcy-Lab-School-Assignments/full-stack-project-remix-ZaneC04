@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { getMe, login, register, logout } from './adapters/auth-adapters';
 import AuthPage from './components/AuthPage';
-import TodoPage from './components/TodoPage';
+import ScorePage from './components/ScorePage';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
-
+  const [activeTab, setActiveTab] = useState('all')
   // On every page load, check the server for an active session cookie.
   // React state doesn't survive a refresh; session cookies do.
   useEffect(() => {
@@ -38,9 +38,9 @@ function App() {
 
   return (
     <main>
-      <h1>Todo App</h1>
+      <h1>Score.Points (Score Tracker)</h1>
       {currentUser
-        ? <TodoPage currentUser={currentUser} handleLogout={handleLogout} />
+        ? <ScorePage currentUser={currentUser} handleLogout={handleLogout} activeTab={activeTab} setActiveTab={setActiveTab}/>
         : <AuthPage handleLogin={handleLogin} handleRegister={handleRegister} />
       }
     </main>
