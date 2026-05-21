@@ -19,14 +19,6 @@ function AddScoreForm({ loadScores, setActiveTab, genres }) {
     setActiveTab('mine')
   };
 
-  useEffect(() => {
-  const loadGenres = async () => {
-    const { data } = await fetchGenres();
-    setGenres(data);
-    };
-    loadGenres();
-  }, []);
-
   return (
     <form id="add-score-form" onSubmit={handleSubmit}>
       <h2>New Score:</h2>
