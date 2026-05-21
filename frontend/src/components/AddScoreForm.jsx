@@ -1,6 +1,5 @@
 import { createScore, fetchGenres } from '../adapters/score-adapters';
 import { useEffect, useState } from 'react';
-// TODO: update to be addScoreForm, use fetch for genres
 
 function AddScoreForm({ loadScores, setActiveTab, genres }) {
   const handleSubmit = async (e) => {

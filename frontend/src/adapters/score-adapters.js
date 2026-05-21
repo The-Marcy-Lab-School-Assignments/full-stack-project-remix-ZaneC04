@@ -1,4 +1,3 @@
-// TODO: change fetches to fetch scores, and update body to req with right data (score value, game title, etc.)
 
 const handleFetch = async (url, options = {}) => {
   try {

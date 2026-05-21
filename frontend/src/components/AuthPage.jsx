@@ -1,7 +1,5 @@
 import { useState } from 'react';
 
-// TODO: N/A, can be reused
-
 function LoginForm({ handleLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');

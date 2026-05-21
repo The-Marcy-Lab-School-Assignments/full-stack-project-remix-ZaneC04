@@ -1,4 +1,3 @@
-// TODO: update to use scoreModel and rename to scoreControllers, make controllers be listScores, createScore, updateScore and deleteScore
 
 const scoreModel = require('../models/scoreModel');
 

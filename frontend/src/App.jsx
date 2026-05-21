@@ -3,9 +3,6 @@ import { getMe, login, register, logout } from './adapters/auth-adapters';
 import AuthPage from './components/AuthPage';
 import ScorePage from './components/ScorePage';
 
-// TODO: update to use scorePage
-
-
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [activeTab, setActiveTab] = useState('all')

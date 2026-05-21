@@ -1,4 +1,4 @@
-// TODO: N/A, can be reused
+
 const bcrypt = require('bcrypt');
 const pool = require('../db/pool');
 

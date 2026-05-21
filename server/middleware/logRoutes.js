@@ -1,4 +1,3 @@
-// TODO: N/A, can be reused
 
 const logRoutes = (req, res, next) => {
   const time = new Date().toLocaleString();

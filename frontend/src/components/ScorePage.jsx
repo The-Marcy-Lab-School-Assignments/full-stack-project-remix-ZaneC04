@@ -4,8 +4,6 @@ import AddScoreForm from './AddScoreForm';
 import ScoreList from './ScoreList';
 import AccountPage from './AccountPage'
 
-// TODO: update to be scorePage, handle loading scores for all users and current user
-
 function ScorePage({ currentUser, handleLogout, activeTab, setActiveTab }) {
   const [scores, setScores] = useState([]);
   const [isLoading, setIsLoading] = useState(false);

@@ -1,4 +1,3 @@
-// TODO: n/a, can be reused
 
 const handleFetch = async (url, options = {}) => {
   try {

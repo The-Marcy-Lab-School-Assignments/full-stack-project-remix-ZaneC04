@@ -1,4 +1,3 @@
-// TODO: import score controllers, change routes to use routes in API contract (DONE)
 
 const path = require('path');
 const express = require('express');
