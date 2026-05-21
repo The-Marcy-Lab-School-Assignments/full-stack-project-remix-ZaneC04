@@ -1,4 +1,4 @@
-# (Project Title) - Game Score Tracker App
+# Score.Points - Game Score Tracker App
 
 A full-stack Game Score Tracking app built with React, Express, and Postgres. Demonstrates session-based authentication, session rehydration, auth-dependent data fetching, and conditional rendering. Perfect for anyone who wants to track their best scores for any genre of game out there.
 
@@ -64,14 +64,15 @@ A user has many scores. Deleting a user cascades to delete all of their scores a
 
 ### Score endpoints (all require authentication)
 
-| Method | Endpoint                | Request Body                                  | Response                                                                  |
-| ------ | ----------------------- | --------------------------------------------- | ------------------------------------------------------------------------- |
-| GET    | `/api/scores`           | —                                             | `[{ score_id, game_title, score_type, score, user_id, username, genre }]` |
-| GET    | `/api/scores/me`        | —                                             | `[{ score_id, game_title, score_type, score, user_id, username, genre }]` |
-| GET    | `/api/scores?genre_id=` | —                                             | `[{ score_id, game_title, score_type, score, user_id, username, genre }]` |
-| POST   | `/api/scores`           | `{ game_title, score_type, score, genre_id }` | `{ score_id, game_title, score_type, score, user_id, genre }`             |
-| PATCH  | `/api/scores/:score_id` | `{ score }`                                   | `{ score_id, score_type, score, user_id, genre }`                         |
-| DELETE | `/api/scores/:score_id` | —                                             | `{ score_id, game_title, score_type, score, user_id }`                    |
+| Method | Endpoint                   | Request Body                                  | Response                                                                  |
+| ------ | -------------------------- | --------------------------------------------- | ------------------------------------------------------------------------- |
+| GET    | `/api/scores`              | —                                             | `[{ score_id, game_title, score_type, score, user_id, username, genre }]` |
+| GET    | `/api/scores/me`           | —                                             | `[{ score_id, game_title, score_type, score, user_id, username, genre }]` |
+| GET    | `/api/scores?genre_id=`    | —                                             | `[{ score_id, game_title, score_type, score, user_id, username, genre }]` |
+| GET    | `/api/scores/me?genre_id=` | —                                             | `[{ score_id, game_title, score_type, score, user_id, username, genre }]` |
+| POST   | `/api/scores`              | `{ game_title, score_type, score, genre_id }` | `{ score_id, game_title, score_type, score, user_id, genre }`             |
+| PATCH  | `/api/scores/:score_id`    | `{ score }`                                   | `{ score_id, score_type, score, user_id, genre }`                         |
+| DELETE | `/api/scores/:score_id`    | —                                             | `{ score_id, game_title, score_type, score, user_id }`                    |
 
 ### Genre endpoints (all require authentication)
 
@@ -79,17 +80,17 @@ A user has many scores. Deleting a user cascades to delete all of their scores a
 | ------ | ------------- | ------------ | ----------------------- |
 | GET    | `/api/genres` | —            | `[{ genre_id, genre }]` |
 
-## Setup (PLACEHOLDER)
+## Setup
 
-### 1. Database (PLACEHOLDER)
+### 1. Database
 
 Create a local Postgres database:
 
 ```sh
-createdb todos_casestudy
+createdb scoretracker_db
 ```
 
-### 2. Server (PLACEHOLDER)
+### 2. Server
 
 ```sh
 cd server
@@ -111,7 +112,7 @@ npm run dev
 
 The server runs on `http://localhost:8080`.
 
-### 3. Frontend (PLACEHOLDER)
+### 3. Frontend
 
 In a second terminal:
 
@@ -123,14 +124,16 @@ npm run dev
 
 The frontend runs on `http://localhost:5173`. The Vite dev proxy forwards all `/api` requests to the Express server so session cookies work correctly.
 
-## Seed Users (PLACEHOLDER)
+## Seed Users
 
 After running `npm run db:seed`, these accounts are available:
 
 | Username | Password    |
 | -------- | ----------- |
-| alice    | password123 |
-| bob      | password123 |
+| will     | password123 |
+| chris    | password123 |
+| jojo     | password123 |
+| gabe     | password123 |
 
 ## Application Structure
 
@@ -141,11 +144,10 @@ After running `npm run db:seed`, these accounts are available:
 │   │   ├── App.jsx         # Root component: currentUser state, session rehydration, auth handlers
 │   │   ├── adapters/
 │   │   │   ├── auth-adapters.js   # Fetch adapters for /api/auth/* endpoints
-│   │   │   ├── score-adapters.js  # Fetch adapters for /api/scores/* endpoints
-│   │   │   └── genre-adapters.js  # Fetch adapters for /api/genres endpoint
+│   │   │   └── score-adapters.js  # Fetch adapters for /api/scores/* endpoints
 │   │   └── components/
 │   │       ├── AuthPage.jsx       # Login + Register forms (shown when logged out)
-│   │       ├── ScoresPage.jsx     # Main app container (shown when logged in)
+│   │       ├── ScorePage.jsx     # Main app container (shown when logged in)
 │   │       ├── AddScoreForm.jsx   # Form to create a new score with genre selection
 │   │       ├── ScoreList.jsx      # Renders a list of ScoreItems, handles genre filter
 │   │       └── ScoreItem.jsx      # Single score: value, genres, edit button, delete button
