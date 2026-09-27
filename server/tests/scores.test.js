@@ -194,6 +194,21 @@ describe('PATCH /api/scores/:score_id', () => {
         expect(response.body).toHaveProperty('error');
         expect(scoreModel.update).not.toHaveBeenCalled();
     })
+
+    it("should fail with a 400 status code if score is missing", async () => {
+    const agent = request.agent(app);
+
+    userModel.validatePassword.mockResolvedValue({ user_id: 1, username: 'will' });
+    await agent.post('/api/auth/login').send({ username: 'will', password: 'password' });
+
+    const response = await agent
+        .patch('/api/scores/1')
+        .send({});
+
+    expect(response.statusCode).toBe(400);
+    expect(response.body).toHaveProperty('error');
+    expect(scoreModel.find).not.toHaveBeenCalled();
+    })
 })
 
 //////////////////

@@ -37,6 +37,7 @@ module.exports.createScore = async (req, res, next) => {
 module.exports.updateScore = async (req, res, next) => {
   try {
     const { score_id } = req.params;
+    if (!req.body.score) return res.status(400).send({error: 'Score is required.'})
     const score = await scoreModel.find(score_id);
     if (!score) return res.status(404).send({ error: 'Score not found.' });
     if (score.user_id !== req.session.user_id) {
