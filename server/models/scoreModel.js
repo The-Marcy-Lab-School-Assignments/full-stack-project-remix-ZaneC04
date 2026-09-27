@@ -1,7 +1,3 @@
-// TODO: rename to scoreModel, create listByUser (list users scores from user_id), 
-// find (find score by score_id), create (create new score), update (update score value), 
-// destroy (delete score by score_id) (DONE)
-// addGenre that takes in score id and genre id and adds to scores_genre table
 const pool = require('../db/pool');
 
 module.exports.list = async (genre_id) => {

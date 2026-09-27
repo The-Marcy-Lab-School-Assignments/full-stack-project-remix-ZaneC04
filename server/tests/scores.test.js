@@ -60,7 +60,7 @@ describe('GET /api/scores', () => {
 })
 
 //////////////////
-// List Scores
+// List My Scores
 //////////////////
 
 describe('GET /api/scores/me', () => {
