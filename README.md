@@ -1,7 +1,6 @@
 # Score.Points - Game Score Tracker App
 
-A full-stack Game Score Tracking app built with React, Express, and Postgres. Demonstrates session-based authentication, session rehydration, auth-dependent data fetching, and conditional rendering. Perfect for anyone who wants to track their best scores for any genre of game out there.
-
+Built for casual and competitive gamers to track and compare their best scores across genres, instead of relying on scattered notes or individual game leaderboards. Score.Points is a full-stack app built with React, Express, and PostgreSQL, using session-based authentication to keep auth simple and easy to invalidate on logout.
 ## User Stories
 
 **Auth**
@@ -15,6 +14,7 @@ A full-stack Game Score Tracking app built with React, Express, and Postgres. De
 
 - A logged-in user can see all of their scores
 - A logged-in user can create a new score by entering a genre of game (puzzle, sports, etc.) the score type (time, points, etc.), the game title and the score value
+- A logged-in user can update the value of their own score
 - A logged-in user can see other users scores, and filter by genre
 - A logged-in user can delete a score
 
@@ -66,13 +66,13 @@ A user has many scores. Deleting a user cascades to delete all of their scores a
 
 | Method | Endpoint                   | Request Body                                  | Response                                                                  |
 | ------ | -------------------------- | --------------------------------------------- | ------------------------------------------------------------------------- |
-| GET    | `/api/scores`              | —                                             | `[{ score_id, game_title, score_type, score, user_id, username, genre }]` |
-| GET    | `/api/scores/me`           | —                                             | `[{ score_id, game_title, score_type, score, user_id, username, genre }]` |
-| GET    | `/api/scores?genre_id=`    | —                                             | `[{ score_id, game_title, score_type, score, user_id, username, genre }]` |
-| GET    | `/api/scores/me?genre_id=` | —                                             | `[{ score_id, game_title, score_type, score, user_id, username, genre }]` |
-| POST   | `/api/scores`              | `{ game_title, score_type, score, genre_id }` | `{ score_id, game_title, score_type, score, user_id, genre }`             |
-| PATCH  | `/api/scores/:score_id`    | `{ score }`                                   | `{ score_id, score_type, score, user_id, genre }`                         |
-| DELETE | `/api/scores/:score_id`    | —                                             | `{ score_id, game_title, score_type, score, user_id }`                    |
+| GET    | `/api/scores`              | —                                              | `[{ score_id, game_title, score_type, score, user_id, username, genre }]` |
+| GET    | `/api/scores?genre_id=`    | —                                              | `[{ score_id, game_title, score_type, score, user_id, username, genre }]` |
+| POST   | `/api/scores`              | `{ game_title, score_type, score, genre_id }` | `{ score_id, game_title, score_type, score, user_id }` |
+| PATCH  | `/api/scores/:score_id`    | `{ score }`                                   | `{ score_id, game_title, score_type, score, user_id }` |
+| GET    | `/api/scores/me`           | —                                              | `[{ score_id, game_title, score_type, score, user_id, genre }]` |
+| GET    | `/api/scores/me?genre_id=` | —                                              | `[{ score_id, game_title, score_type, score, user_id, genre }]` |
+| DELETE | `/api/scores/:score_id`    | —                                              | `{ score_id, game_title, score_type, score, user_id }` |
 
 ### Genre endpoints (all require authentication)
 
@@ -153,7 +153,12 @@ After running `npm run db:seed`, these accounts are available:
 │   │       └── ScoreItem.jsx      # Single score: value, genres, edit button, delete button
 │   └── vite.config.js      # Proxies /api requests to Express in development
 └── server/                 # Express + Postgres API
-    ├── index.js            # App entry point, route definitions
+    ├── server.js           # Entry point — imports the app and starts listening
+    ├── index.js            # Express app definition: middleware, routes (exported for tests)
+    ├── tests/
+    │   ├── auth.test.js    # Register, login, logout, session (getMe)
+    │   ├── scores.test.js  # CRUD, ownership checks, genre filtering
+    │   └── genres.test.js  # List genres, auth enforcement
     ├── controllers/
     │   ├── authControllers.js   # register, login, logout, getMe
     │   ├── scoreControllers.js  # list, create, update, delete scores
